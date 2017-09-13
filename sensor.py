@@ -10,8 +10,9 @@ import os
 import urllib
 import smtplib
 
+# Opens TCP up until reader connects, opens again after 5 seconds
+# Spaghetti will be dealt with at a later date
 def pollSensor():
- #getting data
  temperature,pressure,humidity = bme280.readBME280All()
  strData = str(temperature) + " " + str(humidity) + " " + str(pressure)
  return strData

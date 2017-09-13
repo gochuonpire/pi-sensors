@@ -3,8 +3,8 @@ import MySQLdb
 import time
 import datetime
 
-
-
+# Polls Nest devices and stores some data
+# None of this is really ready to use for other Nest setups yet
 while True:
  print 'Polling Nest Thermostats'
  client_id = 'e49c6ec1-db2e-49a3-bff6-1ac9ce422def'
@@ -51,6 +51,3 @@ while True:
   #print '            Target_hum ' + str(device.target_hum)
   #print '            Away Heat: ' + str(device.eco_temperature[0])
   #print '            Away Cool: ' + str(device.eco_temperature[1])
-
-
-

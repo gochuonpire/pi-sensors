@@ -2,6 +2,7 @@ import requests
 import _mysql as MySQLdb
 import time
 
+# Polls Weather Underground and stores some data
 while True:
   print 'Polling Weather Underground'
   data = requests.get('http://api.wunderground.com/api/b5745e9cacaf559d/conditions/q/VA/Great_Falls.json').json()

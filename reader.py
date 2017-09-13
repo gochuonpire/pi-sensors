@@ -5,6 +5,7 @@ from datetime import datetime as dt, timedelta
 import os
 import threading
 
+# Default script runs every 60 seconds, restarting the pi after 24 hours
 def f():
  threading.Timer(60, f).start()
  print 'Polling Data'
