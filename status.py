@@ -20,7 +20,7 @@ for sensor_ip in r:
       "ps axg | grep sensor.py")
     for line in stdout:
       if "pi/sensor.py" in line:
-         print '\033[92m' + host + " is online and sensor process is running"
+        print '\033[92m' + host + " is online and sensor process is running"
       else:
         print '\033[93m' + host " is online but no sensor process running"
   except:
