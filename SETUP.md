@@ -18,9 +18,10 @@ Next we need to set the scripts to start automatically. Run the following comman
 ```
 sudo nano /etc/rc.local
 ```
-Before the exit 0 at the bottom of the file, add the following (where /home/pi is the path to your git clone):
+Copy starter.sh to / (or dont, but this is the easiest way to do autostart on raspbian).
+Before the exit 0 at the bottom of the file, add the following:
 ```
-sh ./home/pi/starter.sh
+sh ./starter.sh
 ```
 
 ### Setting up the sensors
