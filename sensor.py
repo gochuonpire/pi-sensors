@@ -62,12 +62,6 @@ while True:
       print 'Rebooting later'
      else:
       print 'Rebooting now...'
-      server = smtplib.SMTP('smtp.gmail.com', 587)
-      server.starttls()
-      server.login("andrew.bulkeley@gmail.com", "gmTumadrees0")
-      message = "Rebooting Sensor %s " % str(TCP_IP)
-      server.sendmail("andrew.bulkeley@gmail.com", "gochuonpire@gmail.com", message)
-      server.quit()
       os.system('reboot')
      data = conn.recv(BUFFER_SIZE)
      if not data: break
