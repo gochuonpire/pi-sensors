@@ -60,6 +60,6 @@ def pollPis():
   cnx.close()
   return True
 
-starttime=datetime.now()
+starttime=dt.now()
 
 f()
