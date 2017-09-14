@@ -7,7 +7,7 @@ import datetime
 
 # Polls Weather Underground and stores some data
 def f():
-  threading.Timer(60, f).start()
+  threading.Timer(300, f).start()
   print 'Polling Weather Underground'
   pollWU()
   print 'Done'
