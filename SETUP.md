@@ -14,12 +14,11 @@ To install pi-sensors with git, run the following command in the directory you w
 ```
 git clone https://github.com/gochuonpire/pi-sensors.git
 ```
-Next we need to set the scripts to start automatically. Run the following command to edit rc.local:
+Next we need to set the scripts to start automatically. Copy starter.sh to / (or dont, but this is the easiest way to do autostart on raspbian). Run the following command to edit rc.local:
 ```
 sudo nano /etc/rc.local
 ```
-Copy starter.sh to / (or dont, but this is the easiest way to do autostart on raspbian).
-Before the exit 0 at the bottom of the file, add the following:
+Before the exit 0 at the bottom of the file, add the following (if you copied starter.sh to /):
 ```
 sh ./starter.sh
 ```
