@@ -8,7 +8,6 @@ import bme280
 from datetime import datetime as dt, timedelta
 import os
 import urllib
-import smtplib
 
 # Opens TCP up until reader connects, opens again after 5 seconds
 # Spaghetti will be dealt with at a later date
@@ -56,18 +55,13 @@ while True:
  conn, addr = s.accept()
  print 'Connection address:', addr
  while 1:
-    try:
+   try:
      now = dt.now()
      if now-timedelta(hours=6) <= starttime <= now+timedelta(hours=6):
       print 'Rebooting later'
      else:
       print 'Rebooting now...'
-      server = smtplib.SMTP('smtp.gmail.com', 587)
-      server.starttls()
-      server.login("andrew.bulkeley@gmail.com", "gmTumadrees0")
-      message = "Rebooting Sensor %s " % str(TCP_IP)
-      server.sendmail("andrew.bulkeley@gmail.com", "gochuonpire@gmail.com", message)
-      server.quit()
+      gemail.email(message)
       os.system('reboot')
      data = conn.recv(BUFFER_SIZE)
      if not data: break

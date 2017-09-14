@@ -1,11 +1,18 @@
 import requests
-import _mysql as MySQLdb
+import MySQLdb
 import time
 from dateutil import parser
+import threading
+import datetime
 
 # Polls Weather Underground and stores some data
-while True:
+def f():
+  threading.Timer(60, f).start()
   print 'Polling Weather Underground'
+  pollWU()
+  print 'Done'
+
+def pollWU():
   data = requests.get('http://api.wunderground.com/api/b5745e9cacaf559d/conditions/q/VA/Great_Falls.json').json()
 
   cnx = MySQLdb.connect(host="localhost", user="root", passwd="raspberry", db="home")
@@ -19,7 +26,6 @@ while True:
   observation_time = data['current_observation']['observation_time_rfc822']
   data_date = parser.parse(observation_time)
   final_time = data_date.strftime('%Y-%m-%d %H:%M:%S')
-  print final_time
   temp_f = data['current_observation']['temp_f']
   humidity = data['current_observation']['relative_humidity']
   pressure = data ['current_observation']['pressure_mb']
@@ -34,5 +40,4 @@ while True:
   cnx.commit()
   cnx.close()
 
-  print 'Done'
-  time.sleep(300)
+f()
