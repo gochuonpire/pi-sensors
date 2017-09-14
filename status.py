@@ -22,6 +22,6 @@ for sensor_ip in r:
       if "pi/sensor.py" in line:
         print '\033[92m' + host + " is online and sensor process is running"
       else:
-        print '\033[93m' + host " is online but no sensor process running"
+        print '\033[93m' + host + " is online but no sensor process running"
   except:
     print '\033[91m' + "Could not connect to " + host
