@@ -8,6 +8,7 @@ import bme280
 from datetime import datetime as dt, timedelta
 import os
 import urllib
+import gemail
 
 # Opens TCP up until reader connects, opens again after 5 seconds
 # Spaghetti will be dealt with at a later date
@@ -61,10 +62,7 @@ while True:
       print 'Rebooting later'
      else:
       print 'Rebooting now...'
-<<<<<<< HEAD
       gemail.email(message)
-=======
->>>>>>> e54a8fde8ec9c9d401158e6d5e5699c269d40a3a
       os.system('reboot')
      data = conn.recv(BUFFER_SIZE)
      if not data: break
