@@ -51,6 +51,30 @@ def checkController():
   if delta > 65:
     message = "Alert, controller down for %s seconds" % str(delta)
     gemail.email(message)
+  query = "SELECT `id`, `time` FROM weather ORDER BY `time` DESC LIMIT 1"
+  cursor.execute(query)
+  r=cursor.fetchall()
+  for w_id, w_time in r:
+    wstamp = w_time
+  ts = time.time()
+  timestamp = datetime.datetime.fromtimestamp(ts)
+  serverstamp = datetime.datetime.strptime(wstamp, '%Y-%m-%d %H:%M:%S')
+  wdelta = (timestamp-serverstamp).total_seconds()
+  if wdelta > 350:
+    message = "Alert, weather polling down for %s seconds" % str(delta)
+    gemail.email(message)
+  query = "SELECT `id`, `time` FROM nest_polls ORDER BY `time` DESC LIMIT 1"
+  cursor.execute(query)
+  r=cursor.fetchall()
+  for n_id, n_time in r:
+    nstamp = n_time
+  ts = time.time()
+  timestamp = datetime.datetime.fromtimestamp(ts)
+  serverstamp = datetime.datetime.strptime(nstamp, '%Y-%m-%d %H:%M:%S')
+  ndelta = (timestamp-serverstamp).total_seconds()
+  if ndelta > 350:
+    message = "Alert, nest polling down for %s seconds" % str(delta)
+    gemail.email(message)
   cnx.close()
 
 f()
