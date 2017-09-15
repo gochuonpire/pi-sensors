@@ -45,7 +45,7 @@ Next we need to turn on i2c, run the following command and then navigate to (5) 
 ```
 sudo raspi-config
 ```
-Reboot your pi0w and you are ready to go.
+To get the sensor.py file to the sensor, finish your MySQL setup and then read the updating instructions.
 
 ### Setting up the MySQL Database
 We used the following schema:
