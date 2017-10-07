@@ -62,7 +62,7 @@ while True:
       print 'Rebooting later'
      else:
       print 'Rebooting now...'
-      gemail.email(message)
+      gemail.email("Rebooting sensor " + TCP_IP)
       os.system('reboot')
      data = conn.recv(BUFFER_SIZE)
      if not data: break
