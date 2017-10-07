@@ -13,9 +13,9 @@ import gemail
 # Opens TCP up until reader connects, opens again after 5 seconds
 # Spaghetti will be dealt with at a later date
 def pollSensor():
- temperature,pressure,humidity = bme280.readBME280All()
- strData = str(temperature) + " " + str(humidity) + " " + str(pressure)
- return strData
+    temperature,pressure,humidity = bme280.readBME280All()
+    strData = str(temperature) + " " + str(humidity) + " " + str(pressure)
+    return strData
 
 TCP_IP = "127.0.0.1"
 TCP_PORT = 5000
@@ -45,36 +45,37 @@ for(sensor_port) in returnedRows:
 
 print(TCP_PORT)
 while True:
- print 'Waiting for Request'
+    print 'Waiting for Request'
 
- BUFFER_SIZE = 1024  # Normally 1024, but we want fast response
+    BUFFER_SIZE = 1024  # Normally 1024, but we want fast response
 
- s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
- s.bind((TCP_IP, TCP_PORT))
- s.listen(1)
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.bind((TCP_IP, TCP_PORT))
+    s.listen(1)
 
- conn, addr = s.accept()
- print 'Connection address:', addr
- while 1:
-   try:
-     now = dt.now()
-     if now-timedelta(hours=6) <= starttime <= now+timedelta(hours=6):
-      print 'Rebooting later'
-     else:
-      print 'Rebooting now...'
-      gemail.email("Rebooting sensor " + TCP_IP)
-      os.system('reboot')
-     data = conn.recv(BUFFER_SIZE)
-     if not data: break
-     print "received data:", data
-     newData = pollSensor()
-     conn.send(newData)  # echo
-    except:
-     message = "Error connecting"
-     print message
-     continue
-    else:
-     print "Successfully connected"
+    conn, addr = s.accept()
+    print 'Connection address:', addr
+    while 1:
+        try:
+            now = dt.now()
+            if now-timedelta(hours=6) <= starttime <= now+timedelta(hours=6):
+                print 'Rebooting later'
+            else:
+                print 'Rebooting now...'
+                message = "rebooting sensor " + TCP_IP
+                gemail.email(message)
+                os.system('reboot')
+            data = conn.recv(BUFFER_SIZE)
+            if not data: break
+            print "received data:", data
+            newData = pollSensor()
+            conn.send(newData)  # echo
+        except:
+            message = "Error connecting"
+            print message
+            continue
+        else:
+            print "Successfully connected"
 
- conn.close()
- time.sleep(5)
+        conn.close()
+        time.sleep(5)
