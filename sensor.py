@@ -41,7 +41,7 @@ returnedRows = cursor.fetchall()
 cnx.close()
 
 for(sensor_port) in returnedRows:
- TCP_PORT = sensor_port[0]
+    TCP_PORT = sensor_port[0]
 
 print(TCP_PORT)
 while True:
@@ -73,9 +73,7 @@ while True:
         except:
             message = "Error connecting"
             print message
-            continue
         else:
             print "Successfully connected"
-
-        conn.close()
-        time.sleep(5)
+    conn.close()
+    time.sleep(5)
