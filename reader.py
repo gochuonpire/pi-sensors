@@ -7,15 +7,15 @@ import threading
 
 # Default script runs every 60 seconds, restarting the pi after 24 hours
 def f():
- threading.Timer(60, f).start()
+ #threading.Timer(60, f).start()
  print 'Polling Data'
  pollPis()
- now = dt.now()
- if now-timedelta(hours=24) <= starttime <= now+timedelta(hours=24):
-  print 'Rebooting later'
- else:
-  print 'Rebooting now...'
-  os.system('reboot')
+ #now = dt.now()
+ #if now-timedelta(hours=24) <= starttime <= now+timedelta(hours=24):
+  #print 'Rebooting later'
+ #else:
+  #print 'Rebooting now...'
+  #os.system('reboot')
  print 'Done'
 
 def pollPis():
@@ -60,6 +60,6 @@ def pollPis():
   cnx.close()
   return True
 
-starttime=dt.now()
+#starttime=dt.now()
 
 f()

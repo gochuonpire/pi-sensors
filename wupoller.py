@@ -2,15 +2,10 @@ import requests
 import MySQLdb
 import time
 from dateutil import parser
-import threading
 import datetime
 
-# Polls Weather Underground and stores some data
-def f():
-  threading.Timer(300, f).start()
-  print 'Polling Weather Underground'
-  pollWU()
-  print 'Done'
+
+print 'Polling Weather Underground'
 
 def pollWU():
   data = requests.get('http://api.wunderground.com/api/b5745e9cacaf559d/conditions/q/VA/Great_Falls.json').json()
@@ -40,4 +35,6 @@ def pollWU():
   cnx.commit()
   cnx.close()
 
-f()
+pollWU()
+
+print 'Done'
